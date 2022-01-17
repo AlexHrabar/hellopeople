@@ -1,0 +1,24 @@
+{% extends 'hellopeople/base.html' %}
+
+{% block header %}
+<li class="nav-item"><a href="{% url 'home' %}" class="nav-link px-2 text-secondary" >Привітайся зі всім світом</a></li>
+<li class="nav-item"><a href="{% url 'people' %}" class="nav-link active" aria-current="page">Список людей, які вже привітались</a></li>
+{% endblock %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div style="margin-bottom: 50px"><h1>Люди, які привітались:</h1></div>
+    {% if names %}
+        {% for el in names %}
+            <div class="mt-2">
+               <h3>{{ el.name }}</h3>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>Поки нікого не було(</h2>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'hellopeople/base.html' %}
+
+{% block header %}
+<li class="nav-item"><a href="{% url 'home' %}" class="nav-link active" aria-current="page">Привітайся зі всім світом</a></li>
+<li class="nav-item"><a href="{% url 'people' %}" class="nav-link px-2 text-secondary">Список людей, які вже привітались</a></li>
+{% endblock %}
+
+{% block title %}
+Головна сторінка
+{% endblock %}
+
+{% block content %}
+    <div><h1>Привітайся зі всім світом</h1></div><br>
+    <form method="post" style="margin-top: 50px">
+    {% csrf_token %}
+    {{ form.name }}<br>
+    <button type="submit" class="btn btn-success">Привітатись</button><br>
+        {% for w in hey %}
+            <div class="mt-2">
+                <h3>Привіт, {{ w.name }}</h3>
+            </div>
+        {% endfor %}
+    </form>
+{% endblock %}
